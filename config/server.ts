@@ -4,11 +4,11 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
-  url: env('PUBLIC_URL', 'https://back-hughes-1.onrender.com/'), // URL de tu app en Render
+  url: env('PUBLIC_URL', 'https://hughes-registrator.onrender.com/'), // URL de tu app en Render
   proxy: true,
   cors: {
     origin: [
-      'https://frontend-hughes.vercel.app/', // Tu dominio de Vercel
+      'https://hughesinfo.vercel.app/', // Tu dominio de Vercel
       'http://localhost:3000', // Para desarrollo local
     ],
   },

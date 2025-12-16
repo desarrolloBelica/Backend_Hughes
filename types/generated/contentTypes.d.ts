@@ -532,16 +532,55 @@ export interface ApiDonationDonation extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    amount: Schema.Attribute.Integer & Schema.Attribute.Required;
+    comments: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    donator: Schema.Attribute.String;
+    donationDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    donationDestiny: Schema.Attribute.String & Schema.Attribute.Required;
+    donator: Schema.Attribute.Relation<'oneToOne', 'api::donator.donator'>;
+    frecuency: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::donation.donation'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    succesfull: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDonatorDonator extends Struct.CollectionTypeSchema {
+  collectionName: 'donators';
+  info: {
+    displayName: 'Donator';
+    pluralName: 'donators';
+    singularName: 'donator';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.String & Schema.Attribute.Required;
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    lastName: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::donator.donator'
+    > &
+      Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -571,6 +610,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     location: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     start: Schema.Attribute.Date;
+    ticketLink: Schema.Attribute.String;
     tipo: Schema.Attribute.Enumeration<
       [
         'Academic',
@@ -1623,6 +1663,7 @@ declare module '@strapi/strapi' {
       'api::art-timetable-entry.art-timetable-entry': ApiArtTimetableEntryArtTimetableEntry;
       'api::blog.blog': ApiBlogBlog;
       'api::donation.donation': ApiDonationDonation;
+      'api::donator.donator': ApiDonatorDonator;
       'api::event.event': ApiEventEvent;
       'api::grade.grade': ApiGradeGrade;
       'api::leave-request.leave-request': ApiLeaveRequestLeaveRequest;

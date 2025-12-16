@@ -12,7 +12,33 @@
   "pluginOptions": {},
   "attributes": {
     "donator": {
-      "type": "string"
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::donator.donator"
+    },
+    "amount": {
+      "type": "integer",
+      "required": true
+    },
+    "donationDestiny": {
+      "type": "string",
+      "required": true
+    },
+    "donationDate": {
+      "type": "date",
+      "required": true
+    },
+    "succesfull": {
+      "type": "boolean",
+      "required": true
+    },
+    "frecuency": {
+      "type": "string",
+      "required": true
+    },
+    "comments": {
+      "type": "text",
+      "required": false
     }
   }
 }

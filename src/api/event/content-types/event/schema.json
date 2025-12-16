@@ -37,6 +37,9 @@
         "Other",
         "Trimester"
       ]
+    },
+    "ticketLink": {
+      "type": "string"
     }
   }
 }

@@ -4,6 +4,11 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
+  transfer: {
+    remote: {
+      enabled: true, 
+    },
+  },
   url: env('PUBLIC_URL', 'https://hughes-registrator.onrender.com/'), // URL de tu app en Render
   proxy: true,
   cors: {

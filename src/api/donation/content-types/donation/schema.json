@@ -14,7 +14,8 @@
     "donator": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::donator.donator"
+      "target": "api::donator.donator",
+      "displayName": "Donator"
     },
     "amount": {
       "type": "integer",
@@ -39,6 +40,9 @@
     "comments": {
       "type": "text",
       "required": false
+    },
+    "stripeId": {
+      "type": "string"
     }
   }
 }

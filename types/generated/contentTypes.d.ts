@@ -548,6 +548,7 @@ export interface ApiDonationDonation extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    stripeId: Schema.Attribute.String;
     succesfull: Schema.Attribute.Boolean & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

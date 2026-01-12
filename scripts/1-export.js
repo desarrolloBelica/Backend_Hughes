@@ -75,7 +75,7 @@ child.on('close', (code) => {
     console.log('   3. Configura las credenciales de PostgreSQL:');
     console.log('      DATABASE_HOST=localhost');
     console.log('      DATABASE_PORT=5432');
-    console.log('      DATABASE_NAME=hughesdb');
+    console.log('      DATABASE_NAME=hughesbd');
     console.log('      DATABASE_USERNAME=postgres');
     console.log('      DATABASE_PASSWORD=tu_contraseña\n');
     console.log('   4. Ejecuta: npm run develop');

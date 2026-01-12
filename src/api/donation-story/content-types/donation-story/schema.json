@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "donation_stories",
+  "info": {
+    "singularName": "donation-story",
+    "pluralName": "donation-stories",
+    "displayName": "Donation Story"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "testimonialDate": {
+      "type": "date"
+    },
+    "title": {
+      "type": "text"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::student.student"
+    },
+    "description": {
+      "type": "text"
+    },
+    "representativeImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

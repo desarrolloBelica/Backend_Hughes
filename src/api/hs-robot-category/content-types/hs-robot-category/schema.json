@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hs_robot_categories",
+  "info": {
+    "singularName": "hs-robot-category",
+    "pluralName": "hs-robot-categories",
+    "displayName": "Hs Robot Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "categoryPhoto": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "evaluationParameters": {
+      "type": "richtext"
+    },
+    "teamsDescription": {
+      "type": "richtext"
+    },
+    "characteristics": {
+      "type": "richtext"
+    },
+    "rules": {
+      "type": "richtext"
+    },
+    "heperPictures": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

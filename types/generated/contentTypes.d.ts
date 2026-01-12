@@ -521,6 +521,42 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDonationStoryDonationStory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'donation_stories';
+  info: {
+    displayName: 'Donation Story';
+    pluralName: 'donation-stories';
+    singularName: 'donation-story';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::donation-story.donation-story'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    representativeImages: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    student: Schema.Attribute.Relation<'oneToOne', 'api::student.student'>;
+    testimonialDate: Schema.Attribute.Date;
+    title: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDonationDonation extends Struct.CollectionTypeSchema {
   collectionName: 'donations';
   info: {
@@ -655,6 +691,47 @@ export interface ApiGradeGrade extends Struct.CollectionTypeSchema {
     sections: Schema.Attribute.Relation<'oneToMany', 'api::section.section'>;
     subjects: Schema.Attribute.Relation<'manyToMany', 'api::subject.subject'>;
     textbooks: Schema.Attribute.Relation<'oneToMany', 'api::textbook.textbook'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHsRobotCategoryHsRobotCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'hs_robot_categories';
+  info: {
+    displayName: 'Hs Robot Category';
+    pluralName: 'hs-robot-categories';
+    singularName: 'hs-robot-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoryPhoto: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    characteristics: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    evaluationParameters: Schema.Attribute.RichText;
+    heperPictures: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hs-robot-category.hs-robot-category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    rules: Schema.Attribute.RichText;
+    teamsDescription: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1663,10 +1740,12 @@ declare module '@strapi/strapi' {
       'api::art-group.art-group': ApiArtGroupArtGroup;
       'api::art-timetable-entry.art-timetable-entry': ApiArtTimetableEntryArtTimetableEntry;
       'api::blog.blog': ApiBlogBlog;
+      'api::donation-story.donation-story': ApiDonationStoryDonationStory;
       'api::donation.donation': ApiDonationDonation;
       'api::donator.donator': ApiDonatorDonator;
       'api::event.event': ApiEventEvent;
       'api::grade.grade': ApiGradeGrade;
+      'api::hs-robot-category.hs-robot-category': ApiHsRobotCategoryHsRobotCategory;
       'api::leave-request.leave-request': ApiLeaveRequestLeaveRequest;
       'api::newspaper.newspaper': ApiNewspaperNewspaper;
       'api::parent.parent': ApiParentParent;

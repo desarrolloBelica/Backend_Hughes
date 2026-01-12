@@ -33,7 +33,7 @@ Edita el archivo `.env` y cambia estas líneas:
 DATABASE_CLIENT=postgres
 DATABASE_HOST=localhost
 DATABASE_PORT=5432
-DATABASE_NAME=hughesdb
+DATABASE_NAME=hughesbd
 DATABASE_USERNAME=postgres
 DATABASE_PASSWORD=TU_CONTRASEÑA
 DATABASE_SSL=false
@@ -76,7 +76,7 @@ Accede al panel de administración y verifica que todos tus datos estén present
 ### Error: "Cannot connect to database"
 - Verifica que PostgreSQL esté corriendo
 - Verifica usuario y contraseña en `.env`
-- Verifica que la base de datos exista: `CREATE DATABASE hughesdb;`
+- Verifica que la base de datos exista: `CREATE DATABASE hughesbd;`
 
 ### Error durante la importación
 - Asegúrate de que las tablas estén creadas (Paso 3)

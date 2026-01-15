@@ -987,6 +987,43 @@ export interface ApiSectionSection extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSpothightSpothight extends Struct.CollectionTypeSchema {
+  collectionName: 'spothights';
+  info: {
+    displayName: 'Spotlight';
+    pluralName: 'spothights';
+    singularName: 'spothight';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    accomplishments: Schema.Attribute.Text;
+    approved: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    artisticPath: Schema.Attribute.String;
+    city: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fullname: Schema.Attribute.String;
+    graduationYear: Schema.Attribute.Date;
+    hughesImpact: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::spothight.spothight'
+    > &
+      Schema.Attribute.Private;
+    messageForStudents: Schema.Attribute.Text;
+    profession: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    university: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
   collectionName: 'students';
   info: {
@@ -1753,6 +1790,7 @@ declare module '@strapi/strapi' {
       'api::resource.resource': ApiResourceResource;
       'api::seat-reservation.seat-reservation': ApiSeatReservationSeatReservation;
       'api::section.section': ApiSectionSection;
+      'api::spothight.spothight': ApiSpothightSpothight;
       'api::student.student': ApiStudentStudent;
       'api::subject.subject': ApiSubjectSubject;
       'api::teacher.teacher': ApiTeacherTeacher;

@@ -45,11 +45,10 @@
       "type": "enumeration",
       "enum": [
         "Academic",
-        "Artistic",
+        "Performing Arts",
         "Extracurricular",
-        "Logros",
-        "Reconocimiento",
-        "Comunicado",
+        "Achivements",
+        "Recognition",
         "Other"
       ]
     }

@@ -29,7 +29,7 @@
     "artisticPath": {
       "type": "string"
     },
-    "accomplishments": {
+    "biography": {
       "type": "text"
     },
     "hughesImpact": {
@@ -41,6 +41,16 @@
     "approved": {
       "type": "boolean",
       "default": false
+    },
+    "medias": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

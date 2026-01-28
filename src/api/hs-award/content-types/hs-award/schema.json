@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hs_awards",
+  "info": {
+    "singularName": "hs-award",
+    "pluralName": "hs-awards",
+    "displayName": "Hs Award"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "award": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

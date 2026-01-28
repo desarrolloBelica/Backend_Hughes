@@ -54,6 +54,12 @@
       "relation": "oneToMany",
       "target": "api::leave-request.leave-request",
       "mappedBy": "student"
+    },
+    "hs_rumble_winner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hs-rumble-winner.hs-rumble-winner",
+      "inversedBy": "students"
     }
   }
 }

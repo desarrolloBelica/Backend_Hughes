@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hs_rumble_winners",
+  "info": {
+    "singularName": "hs-rumble-winner",
+    "pluralName": "hs-rumble-winners",
+    "displayName": "HS Rumble Winner"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupName": {
+      "type": "string"
+    },
+    "winningPhoto": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "students": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student",
+      "mappedBy": "hs_rumble_winner"
+    },
+    "hs_robot_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hs-robot-category.hs-robot-category"
+    },
+    "winDate": {
+      "type": "date"
+    }
+  }
+}

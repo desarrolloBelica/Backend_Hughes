@@ -507,11 +507,10 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     type: Schema.Attribute.Enumeration<
       [
         'Academic',
-        'Artistic',
+        'Performing Arts',
         'Extracurricular',
-        'Logros',
-        'Reconocimiento',
-        'Comunicado',
+        'Achivements',
+        'Recognition',
         'Other',
       ]
     >;
@@ -657,6 +656,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
         'Music',
         'Other',
         'Trimester',
+        'Theater',
       ]
     >;
     title: Schema.Attribute.String;
@@ -691,6 +691,35 @@ export interface ApiGradeGrade extends Struct.CollectionTypeSchema {
     sections: Schema.Attribute.Relation<'oneToMany', 'api::section.section'>;
     subjects: Schema.Attribute.Relation<'manyToMany', 'api::subject.subject'>;
     textbooks: Schema.Attribute.Relation<'oneToMany', 'api::textbook.textbook'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHsAwardHsAward extends Struct.CollectionTypeSchema {
+  collectionName: 'hs_awards';
+  info: {
+    displayName: 'Hs Award';
+    pluralName: 'hs-awards';
+    singularName: 'hs-award';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    award: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hs-award.hs-award'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -735,6 +764,45 @@ export interface ApiHsRobotCategoryHsRobotCategory
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHsRumbleWinnerHsRumbleWinner
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'hs_rumble_winners';
+  info: {
+    displayName: 'HS Rumble Winner';
+    pluralName: 'hs-rumble-winners';
+    singularName: 'hs-rumble-winner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    groupName: Schema.Attribute.String;
+    hs_robot_category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::hs-robot-category.hs-robot-category'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hs-rumble-winner.hs-rumble-winner'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    students: Schema.Attribute.Relation<'oneToMany', 'api::student.student'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    winDate: Schema.Attribute.Date;
+    winningPhoto: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
   };
 }
 
@@ -808,6 +876,68 @@ export interface ApiNewspaperNewspaper extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOpinionOpinion extends Struct.CollectionTypeSchema {
+  collectionName: 'opinions';
+  info: {
+    displayName: 'Opinion';
+    pluralName: 'opinions';
+    singularName: 'opinion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    approved: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    comment: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::opinion.opinion'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    rateStars: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOutcomeOutcome extends Struct.CollectionTypeSchema {
+  collectionName: 'outcomes';
+  info: {
+    displayName: 'Outcome';
+    pluralName: 'outcomes';
+    singularName: 'outcome';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    event: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::outcome.outcome'
+    > &
+      Schema.Attribute.Private;
+    place: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Integer;
+    recognition: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -998,9 +1128,9 @@ export interface ApiSpothightSpothight extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    accomplishments: Schema.Attribute.Text;
     approved: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     artisticPath: Schema.Attribute.String;
+    biography: Schema.Attribute.Text;
     city: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1014,6 +1144,10 @@ export interface ApiSpothightSpothight extends Struct.CollectionTypeSchema {
       'api::spothight.spothight'
     > &
       Schema.Attribute.Private;
+    medias: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     messageForStudents: Schema.Attribute.Text;
     profession: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -1045,6 +1179,10 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     email: Schema.Attribute.Email;
     firstName: Schema.Attribute.String & Schema.Attribute.Required;
     grade: Schema.Attribute.Relation<'oneToOne', 'api::grade.grade'>;
+    hs_rumble_winner: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::hs-rumble-winner.hs-rumble-winner'
+    >;
     lastName: Schema.Attribute.String & Schema.Attribute.Required;
     leave_requests: Schema.Attribute.Relation<
       'oneToMany',
@@ -1258,6 +1396,71 @@ export interface ApiTimetableEntryTimetableEntry
     startTime: Schema.Attribute.Time;
     subject: Schema.Attribute.Relation<'manyToOne', 'api::subject.subject'>;
     teacher: Schema.Attribute.Relation<'manyToOne', 'api::teacher.teacher'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUnitedSpaceSchoolRequirementUnitedSpaceSchoolRequirement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'united_space_school_requirements';
+  info: {
+    displayName: 'United Space School Requirement';
+    pluralName: 'united-space-school-requirements';
+    singularName: 'united-space-school-requirement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    isOptional: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::united-space-school-requirement.united-space-school-requirement'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    requirementName: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUniversityUniversity extends Struct.CollectionTypeSchema {
+  collectionName: 'universities';
+  info: {
+    displayName: 'University';
+    pluralName: 'universities';
+    singularName: 'university';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::university.university'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    name: Schema.Attribute.String;
+    page: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1782,9 +1985,13 @@ declare module '@strapi/strapi' {
       'api::donator.donator': ApiDonatorDonator;
       'api::event.event': ApiEventEvent;
       'api::grade.grade': ApiGradeGrade;
+      'api::hs-award.hs-award': ApiHsAwardHsAward;
       'api::hs-robot-category.hs-robot-category': ApiHsRobotCategoryHsRobotCategory;
+      'api::hs-rumble-winner.hs-rumble-winner': ApiHsRumbleWinnerHsRumbleWinner;
       'api::leave-request.leave-request': ApiLeaveRequestLeaveRequest;
       'api::newspaper.newspaper': ApiNewspaperNewspaper;
+      'api::opinion.opinion': ApiOpinionOpinion;
+      'api::outcome.outcome': ApiOutcomeOutcome;
       'api::parent.parent': ApiParentParent;
       'api::period.period': ApiPeriodPeriod;
       'api::resource.resource': ApiResourceResource;
@@ -1797,6 +2004,8 @@ declare module '@strapi/strapi' {
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'api::textbook.textbook': ApiTextbookTextbook;
       'api::timetable-entry.timetable-entry': ApiTimetableEntryTimetableEntry;
+      'api::united-space-school-requirement.united-space-school-requirement': ApiUnitedSpaceSchoolRequirementUnitedSpaceSchoolRequirement;
+      'api::university.university': ApiUniversityUniversity;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

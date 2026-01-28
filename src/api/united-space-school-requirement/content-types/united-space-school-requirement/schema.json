@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "united_space_school_requirements",
+  "info": {
+    "singularName": "united-space-school-requirement",
+    "pluralName": "united-space-school-requirements",
+    "displayName": "United Space School Requirement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "requirementName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "isOptional": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

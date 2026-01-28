@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outcomes",
+  "info": {
+    "singularName": "outcome",
+    "pluralName": "outcomes",
+    "displayName": "Outcome"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer"
+    },
+    "event": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "place": {
+      "type": "string"
+    },
+    "recognition": {
+      "type": "string"
+    }
+  }
+}

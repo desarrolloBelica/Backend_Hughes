@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "opinions",
+  "info": {
+    "singularName": "opinion",
+    "pluralName": "opinions",
+    "displayName": "Opinion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "rateStars": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

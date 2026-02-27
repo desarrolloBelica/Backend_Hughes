@@ -1,16 +1,19 @@
-// crea/edita este archivo
-module.exports = () => ({
+module.exports = ({ env }) => ({
+  // ...
   upload: {
     config: {
-      provider: 'local',
-      // sizeLimit debe estar al nivel de upload.config (no en providerOptions)
-      sizeLimit: 25 * 1024 * 1024, // 25 MB por archivo
+      provider: 'cloudinary',
       providerOptions: {
-        // opciones específicas del provider local (vacío por ahora)
+        cloud_name: env('CLOUDINARY_NAME'),
+        api_key: env('CLOUDINARY_KEY'),
+        api_secret: env('CLOUDINARY_SECRET'),
       },
-      // Desactiva formatos responsivos para aliviar a sharp (puedes reactivar luego)
-      breakpoints: {},
+      actionOptions: {
+        upload: {},
+        uploadStream: {},
+        delete: {},
+      },
     },
   },
+  // ...
 });
-

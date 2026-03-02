@@ -56,8 +56,13 @@ export default factories.createCoreController('api::parent.parent', ({ strapi })
     }
 
     const parent = await strapi.entityService.findOne('api::parent.parent', payload.id, {
-      populate: { students: true },
+      populate: { 
+        students: {
+          populate: ['section', 'art_group'] // Carga las relaciones para los horarios
+        } 
+      },
     });
+    
     if (!parent) return ctx.notFound('No encontrado');
 
     ctx.body = { parent: sanitize(parent) };

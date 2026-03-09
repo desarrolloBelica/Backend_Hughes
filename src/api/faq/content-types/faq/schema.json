@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faqs",
+  "info": {
+    "singularName": "faq",
+    "pluralName": "faqs",
+    "displayName": "FAQ"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "uniforms",
+        "schedule",
+        "cafeteria",
+        "healthy",
+        "devices",
+        "admissions-age",
+        "transport",
+        "general"
+      ]
+    },
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "blocks"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "shield-check",
+        "clock",
+        "utensils-crossed",
+        "salad",
+        "smartphone",
+        "graduation-cap",
+        "bus",
+        "message-circle-question",
+        "book-open",
+        "users",
+        "calendar",
+        "heart",
+        "star",
+        "info",
+        "help-circle"
+      ]
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

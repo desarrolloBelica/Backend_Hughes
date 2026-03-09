@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cms_admin_users",
+  "info": {
+    "singularName": "cms-admin-user",
+    "pluralName": "cms-admin-users",
+    "displayName": "Cms admin user"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "operador_academico",
+        "comunicaciones",
+        "finanzas",
+        "admisiones",
+        "super_admin"
+      ]
+    },
+    "password": {
+      "type": "password"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "lastLogin": {
+      "type": "date"
+    }
+  }
+}

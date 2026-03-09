@@ -520,6 +520,48 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCmsAdminUserCmsAdminUser
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'cms_admin_users';
+  info: {
+    displayName: 'Cms admin user';
+    pluralName: 'cms-admin-users';
+    singularName: 'cms-admin-user';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    lastLogin: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cms-admin-user.cms-admin-user'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    password: Schema.Attribute.Password;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<
+      [
+        'operador_academico',
+        'comunicaciones',
+        'finanzas',
+        'admisiones',
+        'super_admin',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDonationStoryDonationStory
   extends Struct.CollectionTypeSchema {
   collectionName: 'donation_stories';
@@ -666,6 +708,64 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
+  collectionName: 'faqs';
+  info: {
+    displayName: 'FAQ';
+    pluralName: 'faqs';
+    singularName: 'faq';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answer: Schema.Attribute.Blocks;
+    category: Schema.Attribute.Enumeration<
+      [
+        'uniforms',
+        'schedule',
+        'cafeteria',
+        'healthy',
+        'devices',
+        'admissions-age',
+        'transport',
+        'general',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon: Schema.Attribute.Enumeration<
+      [
+        'shield-check',
+        'clock',
+        'utensils-crossed',
+        'salad',
+        'smartphone',
+        'graduation-cap',
+        'bus',
+        'message-circle-question',
+        'book-open',
+        'users',
+        'calendar',
+        'heart',
+        'star',
+        'info',
+        'help-circle',
+      ]
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'> &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGradeGrade extends Struct.CollectionTypeSchema {
   collectionName: 'grades';
   info: {
@@ -694,6 +794,53 @@ export interface ApiGradeGrade extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHelpCenterCardHelpCenterCard
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'help_center_cards';
+  info: {
+    displayName: 'Help Center Card';
+    pluralName: 'help-center-cards';
+    singularName: 'help-center-card';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    area: Schema.Attribute.Enumeration<
+      [
+        'Educaci\u00F3n',
+        'Academico',
+        'Bienestar',
+        'Administraci\u00F3n',
+        'Artes',
+        'Finanzas',
+      ]
+    >;
+    bullets: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    hours: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::help-center-card.help-center-card'
+    > &
+      Schema.Attribute.Private;
+    officePhone: Schema.Attribute.String;
+    order: Schema.Attribute.Integer;
+    personName: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    roomUrl: Schema.Attribute.String;
+    tittle: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    whatsapp: Schema.Attribute.String;
   };
 }
 
@@ -1980,11 +2127,14 @@ declare module '@strapi/strapi' {
       'api::art-group.art-group': ApiArtGroupArtGroup;
       'api::art-timetable-entry.art-timetable-entry': ApiArtTimetableEntryArtTimetableEntry;
       'api::blog.blog': ApiBlogBlog;
+      'api::cms-admin-user.cms-admin-user': ApiCmsAdminUserCmsAdminUser;
       'api::donation-story.donation-story': ApiDonationStoryDonationStory;
       'api::donation.donation': ApiDonationDonation;
       'api::donator.donator': ApiDonatorDonator;
       'api::event.event': ApiEventEvent;
+      'api::faq.faq': ApiFaqFaq;
       'api::grade.grade': ApiGradeGrade;
+      'api::help-center-card.help-center-card': ApiHelpCenterCardHelpCenterCard;
       'api::hs-award.hs-award': ApiHsAwardHsAward;
       'api::hs-robot-category.hs-robot-category': ApiHsRobotCategoryHsRobotCategory;
       'api::hs-rumble-winner.hs-rumble-winner': ApiHsRumbleWinnerHsRumbleWinner;

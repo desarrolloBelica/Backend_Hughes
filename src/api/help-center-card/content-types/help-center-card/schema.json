@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "help_center_cards",
+  "info": {
+    "singularName": "help-center-card",
+    "pluralName": "help-center-cards",
+    "displayName": "Help Center Card"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "area": {
+      "type": "enumeration",
+      "enum": [
+        "Educación",
+        "Academico",
+        "Bienestar",
+        "Administración",
+        "Artes",
+        "Finanzas"
+      ]
+    },
+    "tittle": {
+      "type": "string"
+    },
+    "bullets": {
+      "type": "json"
+    },
+    "personName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "whatsapp": {
+      "type": "string"
+    },
+    "officePhone": {
+      "type": "string"
+    },
+    "roomUrl": {
+      "type": "string"
+    },
+    "hours": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

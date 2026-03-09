@@ -55,12 +55,39 @@ export default factories.createCoreController('api::parent.parent', ({ strapi })
       return ctx.unauthorized('Token inválido');
     }
 
+    // Parse populate from query params (e.g., ?populate=students.section,students.art_group)
+    const populateParam = ctx.query.populate;
+    let populateObj: any = { 
+      students: {
+        populate: ['section', 'art_group']
+      } 
+    };
+    
+    if (populateParam) {
+      const fields = Array.isArray(populateParam) 
+        ? populateParam.flatMap(p => String(p).split(','))
+        : String(populateParam).split(',');
+      
+      populateObj = {};
+      for (const field of fields) {
+        const trimmed = field.trim();
+        if (trimmed) {
+          // Handle nested population like students.section
+          if (trimmed.startsWith('students.')) {
+            if (!populateObj.students) {
+              populateObj.students = { populate: [] };
+            }
+            const nested = trimmed.replace('students.', '');
+            populateObj.students.populate.push(nested);
+          } else {
+            populateObj[trimmed] = true;
+          }
+        }
+      }
+    }
+
     const parent = await strapi.entityService.findOne('api::parent.parent', payload.id, {
-      populate: { 
-        students: {
-          populate: ['section', 'art_group'] // Carga las relaciones para los horarios
-        } 
-      },
+      populate: populateObj,
     });
     
     if (!parent) return ctx.notFound('No encontrado');

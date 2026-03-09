@@ -66,9 +66,26 @@ export default factories.createCoreController('api::student.student', ({ strapi 
       return ctx.unauthorized('Token inválido');
     }
 
-    // Trae relaciones útiles si quieres (section, parents)
+    // Parse populate from query params (e.g., ?populate=section,art_group,grade)
+    const populateParam = ctx.query.populate;
+    let populateObj: Record<string, boolean> = { section: true, parents: true };
+    
+    if (populateParam) {
+      const fields = Array.isArray(populateParam) 
+        ? populateParam.flatMap(p => String(p).split(','))
+        : String(populateParam).split(',');
+      
+      populateObj = {};
+      for (const field of fields) {
+        const trimmed = field.trim();
+        if (trimmed) {
+          populateObj[trimmed] = true;
+        }
+      }
+    }
+
     const student = await strapi.entityService.findOne('api::student.student', payload.id, {
-      populate: { section: true, parents: true },
+      populate: populateObj,
     });
     if (!student) return ctx.notFound('No encontrado');
 
